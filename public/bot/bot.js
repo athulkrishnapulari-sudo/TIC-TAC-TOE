@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll(".box");
 const status = document.getElementById("status");
 const restartButton = document.getElementById("restart");
+const winLine = document.getElementById("win-line");
 
 let board = ["", "", "", "", "", "", "", "", ""];
 
@@ -24,6 +25,59 @@ const winningCombinations = [
 ];
 
 
+function getWinningCombination(symbol) {
+    for (const combination of winningCombinations) {
+        const [a, b, c] = combination;
+
+        if (
+            board[a] === symbol &&
+            board[b] === symbol &&
+            board[c] === symbol
+        ) {
+            return combination;
+        }
+    }
+
+    return null;
+}
+
+function drawWinLine(combination) {
+    const boardElement = document.querySelector(".board");
+    const startCell = cells[combination[0]];
+    const endCell = cells[combination[2]];
+
+    const boardRect = boardElement.getBoundingClientRect();
+    const startRect = startCell.getBoundingClientRect();
+    const endRect = endCell.getBoundingClientRect();
+
+    let startX = startRect.left - boardRect.left + startRect.width / 2;
+    let startY = startRect.top - boardRect.top + startRect.height / 2;
+    let endX = endRect.left - boardRect.left + endRect.width / 2;
+    let endY = endRect.top - boardRect.top + endRect.height / 2;
+
+    if (Math.abs(startX - endX) < 2) {
+        const offset = startX > boardRect.width / 2 ? -8 : 8;
+        startX += offset;
+        endX += offset;
+    }
+
+    if (Math.abs(startY - endY) < 2) {
+        const offset = startY > boardRect.height / 2 ? -8 : 8;
+        startY += offset;
+        endY += offset;
+    }
+
+    winLine.setAttribute("x1", startX);
+    winLine.setAttribute("y1", startY);
+    winLine.setAttribute("x2", endX);
+    winLine.setAttribute("y2", endY);
+    winLine.setAttribute("display", "block");
+}
+
+function clearWinLine() {
+    winLine.setAttribute("display", "none");
+}
+
 // ==========================
 // PLAYER MOVE
 // ==========================
@@ -45,9 +99,12 @@ cells.forEach((cell, index) => {
         cell.textContent = player;
 
         // Check player win
-        if (checkWinner(player)) {
+        const playerWin = getWinningCombination(player);
+
+        if (playerWin) {
 
             gameOver = true;
+            drawWinLine(playerWin);
             status.textContent = "You won!";
 
             return;
@@ -57,6 +114,7 @@ cells.forEach((cell, index) => {
         if (checkDraw()) {
 
             gameOver = true;
+            clearWinLine();
             status.textContent = "Draw!";
 
             return;
@@ -146,9 +204,12 @@ function botMove() {
     cells[move].textContent = bot;
 
     // Check bot win
-    if (checkWinner(bot)) {
+    const botWin = getWinningCombination(bot);
+
+    if (botWin) {
 
         gameOver = true;
+        drawWinLine(botWin);
         status.textContent = "Bot won!";
 
         return;
@@ -158,6 +219,7 @@ function botMove() {
     if (checkDraw()) {
 
         gameOver = true;
+        clearWinLine();
         status.textContent = "Draw!";
 
         return;
@@ -216,21 +278,7 @@ function findWinningMove(symbol) {
 // ==========================
 
 function checkWinner(symbol) {
-
-    for (const combination of winningCombinations) {
-
-        const [a, b, c] = combination;
-
-        if (
-            board[a] === symbol &&
-            board[b] === symbol &&
-            board[c] === symbol
-        ) {
-            return true;
-        }
-    }
-
-    return false;
+    return getWinningCombination(symbol) !== null;
 }
 
 
@@ -259,5 +307,6 @@ restartButton.addEventListener("click", () => {
         cell.textContent = "";
     });
 
+    clearWinLine();
     status.textContent = "Your turn";
 });

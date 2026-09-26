@@ -129,6 +129,15 @@ main h1 {
     stroke-linecap: round;
 }
 
+#win-line {
+    stroke: #f2d66d;
+    stroke-width: 7;
+    stroke-linecap: round;
+    fill: none;
+    filter: url(#pencil-sketch);
+    vector-effect: non-scaling-stroke;
+}
+
 
 /* =========================
    RESTART BUTTON

@@ -27,8 +27,15 @@ main h1{
     font-family: "Finger Paint", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 44px;
+}
+
+#status {
+    color: #E5B83F;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
 }
 
 .board {
@@ -73,6 +80,15 @@ main h1{
     stroke: #eec34b;
     stroke-width: 5;
     stroke-linecap: round;
+}
+
+#win-line {
+    stroke: #eec34b;
+    stroke-width: 6;
+    stroke-linecap: round;
+    fill: none;
+    filter: url(#pencil-sketch);
+    vector-effect: non-scaling-stroke;
 }
 
 
