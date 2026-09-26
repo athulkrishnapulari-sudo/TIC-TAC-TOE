@@ -250,7 +250,7 @@ function checkDraw() {
 
 restartButton.addEventListener("click", () => {
 
-    board = ["", "", "", "", "", "", "", ""];
+    board = ["", "", "", "", "", "", "", "", ""];
 
     gameOver = false;
     playerTurn = true;
