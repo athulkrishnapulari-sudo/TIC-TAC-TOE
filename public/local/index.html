@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic - Tac - Toe</title>
+    <link rel="stylesheet" href="local.css" />
+    <script defer src="local.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>TIC TAC TOE</h1>
+      <div id="game">
+        <div class="board">
+          <div class="box" id="box1"></div>
+          <div class="box" id="box2"></div>
+          <div class="box" id="box3"></div>
+
+          <div class="box" id="box4"></div>
+          <div class="box" id="box5"></div>
+          <div class="box" id="box6"></div>
+
+          <div class="box" id="box7"></div>
+          <div class="box" id="box8"></div>
+          <div class="box" id="box9"></div>
+
+          <svg class="grid-lines" viewBox="0 0 300 300">
+            <defs>
+              <!-- YOUR FILTER -->
+              <filter
+                id="pencil-sketch"
+                x="-10%"
+                y="-10%"
+                width="120%"
+                height="120%"
+              >
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.05"
+                  numOctaves="4"
+                  result="noise"
+                />
+
+                <feDisplacementMap
+                  in="SourceGraphic"
+                  in2="noise"
+                  scale="6"
+                  xChannelSelector="R"
+                  yChannelSelector="G"
+                  result="wavy"
+                />
+
+                <feColorMatrix
+                  type="matrix"
+                  values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 0.85 0"
+                />
+              </filter>
+            </defs>
+
+            <path d="M100 3 C97 45 102 92 99 145 C97 195 102 250 100 297" />
+            <path d="M200 3 C203 55 197 105 201 155 C204 205 198 250 201 297" />
+
+            <path d="M3 100 C55 97 105 102 150 99 C200 97 250 103 297 100" />
+            <path d="M3 200 C55 203 100 197 150 201 C200 204 250 198 297 201" />
+          </svg>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

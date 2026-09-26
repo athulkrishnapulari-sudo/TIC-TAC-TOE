@@ -1,0 +1,96 @@
+.home {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+.home-content {
+    width: 100%;
+    max-width: 900px;
+
+    text-align: center;
+}
+
+.home-content h1 {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 4px;
+
+    color: #E5B83F;
+
+    margin-bottom: 12px;
+}
+
+.home-content > p {
+    font-size: 18px;
+    color: #aaaaaa;
+
+    margin-bottom: 50px;
+}
+
+.game-modes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.mode-card {
+    text-decoration: none;
+    color: #f5f5f5;
+
+    padding: 35px 25px;
+
+    border: 3px solid #E5B83F;
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.mode-card:hover {
+    background-color: #E5B83F;
+    color: #161616;
+
+    transform: translateY(-6px);
+}
+
+.mode-card h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.mode-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #aaaaaa;
+}
+
+.mode-card:hover p {
+    color: #161616;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .home-content h1 {
+        font-size: 42px;
+    }
+
+    .game-modes {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .mode-card {
+        padding: 28px 20px;
+    }
+
+}

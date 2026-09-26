@@ -1,0 +1,78 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+
+
+
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: rgb(22, 22, 22);
+}
+main{
+    width:100%;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+main h1{
+    color:#eec34b;
+    font-family: "Finger Paint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 20px;
+    font-size: 44px;
+}
+
+.board {
+    position: relative;
+    width: 300px;
+    height: 300px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.box {
+    position: relative;
+    z-index: 2;
+
+    cursor: pointer;
+}
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color:#eec34b;
+    font-family: "Finger Paint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.grid-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    transform: translateY(25px);
+}
+
+.grid-lines path {
+    fill: none;
+    stroke: #eec34b;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+
