@@ -2,7 +2,7 @@ const cells = document.querySelectorAll(".box");
 const status = document.getElementById("status");
 const restartButton = document.getElementById("restart");
 
-let board = ["", "", "", "", "", "", "", ""];
+let board = ["", "", "", "", "", "", "", "", ""];
 
 const player = "X";
 const bot = "O";
