@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
   workflow_dispatch:
 
 permissions:
@@ -13,13 +12,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-
   deploy:
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -27,18 +24,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload entire repo
-        uses: actions/upload-pages-artifact@v4
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-        path: "./"
-
+          path: ./public
 
       - name: Deploy to GitHub Pages
         id: deployment
